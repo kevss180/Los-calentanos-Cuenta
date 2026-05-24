@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagos - Mariscos Los Calentanos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e5e7eb; /* Fondo gris claro */
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+        }
+        h1 {
+            color: #0f172a; /* Azul marino oscuro */
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            color: #64748b; /* Gris texto */
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .data-group {
+            text-align: left;
+            margin-bottom: 20px;
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1e3a8a; /* Acento azul marino */
+        }
+        .label {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .copy-btn {
+            background-color: #1e3a8a; /* Azul marino */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        .copy-btn:hover {
+            background-color: #1e40af;
+        }
+        .copy-btn:active {
+            background-color: #16a34a; /* Verde éxito al presionar */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Mariscos Los Calentanos</h1>
+        <p class="subtitle">Titular: Bryan Jaimez Rosario<br>Banco: BBVA</p>
+
+        <div class="data-group">
+            <div class="label">Número de Cuenta</div>
+            <div class="value" id="cuenta">158 201 7994</div>
+            <button class="copy-btn" onclick="copiar('cuenta', this)">Copiar Cuenta</button>
+        </div>
+
+        <div class="data-group">
+            <div class="label">CLABE Interbancaria</div>
+            <div class="value" id="clabe">012 180 01582017994 6</div>
+            <button class="copy-btn" onclick="copiar('clabe', this)">Copiar CLABE</button>
+        </div>
+    </div>
+
+    <script>
+        function copiar(idElemento, boton) {
+            // Se quitan los espacios para que el cliente copie el número limpio a su app
+            var texto = document.getElementById(idElemento).innerText.replace(/\s+/g, '');
+            navigator.clipboard.writeText(texto).then(function() {
+                var textoOriginal = boton.innerText;
+                boton.innerText = '¡Copiado!';
+                boton.style.backgroundColor = '#16a34a'; // Cambia a verde
+                
+                setTimeout(function() {
+                    boton.innerText = textoOriginal;
+                    boton.style.backgroundColor = ''; // Regresa al azul marino
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error al copiar: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
